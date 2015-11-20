@@ -1,0 +1,12 @@
+"name": "Udoo",
+"keywords": "Networking", "bi-directional Serial",
+"description": "With this Udoo library use the linux side commands/functions as an arduino shield",
+"repository":
+{
+"type": "git",
+"url": "soon to come",
+},
+"exclude": "doc",
+"frameworks": "arduino", "Linux",
+"platform": ["atmelavr", "Imx3"]
+}

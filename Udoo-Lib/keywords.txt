@@ -1,0 +1,41 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+NONE_KEY KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+init	KEYWORD2
+stop	KEYWORD2
+test	KEYWORD2
+debug	KEYWORD2
+getIp	KEYWORD2
+tcpClose	KEYWORD2
+tcpServer	KEYWORD2
+tcpClient	KEYWORD2
+udpClient	KEYWORD2
+udpServer	KEYWORD2
+clientSend	KEYWORD2
+waitForClient	KEYWORD2
+clientSendUdp	KEYWORD2
+clientRecv	KEYWORD2
+udpGetClientIp	KEYWORD2
+clientRecvUdp	KEYWORD2
+closeTheClient 	KEYWORD2
+sendToClient 	KEYWORD2
+sendToClientUdp	KEYWORD2
+recvFromClient 	KEYWORD2
+recvFromClientUdp 	KEYWORD2
+linuxCommand	KEYWORD2
+Udoo	KEYWORD2
+
+######################################
+# Constants (LITERAL1)
+#######################################
+KEY_NONE	LITERAL1
