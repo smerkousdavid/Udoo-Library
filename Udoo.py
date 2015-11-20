@@ -30,12 +30,15 @@ ser = Serial("/dev/ttymxc3", 115200)
 def find(full, finds):
     if full.find(finds) != -1:
         return True
-    return False
+    else:
+    	return False
 
 def fFind(full, finds):
     if str("<%="+finds+"=%>") in full:
         return True
-    return False
+    else:
+    	return False
+    	
 def sub(full, starter, ender):
     return full[full.index("<%="+starter+"=%>")+(len("<%="+starter+"=%>")):full.index(ender)]
 
