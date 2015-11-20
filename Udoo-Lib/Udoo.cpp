@@ -191,14 +191,11 @@ String Udoo::udpGetClientIp()
 }
 #undef line
 
-#define ok Udoo::ready
-void Udoo::debug(String mess)
+void Udoo::debug(String message)
 {
 	while(Serial.available());
-	Serial.println("DEB:"+mess+"%=E=%");
-	ok();
+	Udoo::writeLine("DEBUG",message);
 }
-#undef ok
 
 #define ok Udoo::ready
 void Udoo::test()
