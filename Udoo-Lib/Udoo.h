@@ -52,4 +52,16 @@ class TcpClient
 	void waiter();
 };
 
+class UdpClient
+{
+	public:
+	void connect(String ip, int port);
+	void send(String toSend);
+	String recv();
+	void close();
+	private:
+	void waiter();
+};
+
+
 #endif
