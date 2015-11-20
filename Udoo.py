@@ -30,14 +30,12 @@ ser = Serial("/dev/ttymxc3", 115200)
 def find(full, finds):
     if full.find(finds) != -1:
         return True
-    else:
-    	return False
+    return False
 
 def fFind(full, finds):
     if str("<%="+finds+"=%>") in full:
         return True
-    else:
-    	return False
+    return False
     	
 def sub(full, starter, ender):
     return full[full.index("<%="+starter+"=%>")+(len("<%="+starter+"=%>")):full.index(ender)]
@@ -134,6 +132,9 @@ def val():
 
     if fFind(recv, "TCPrecv"):
     	TCPrecv()
+    	
+    if fFind(recv, "DEBUG"):
+    	print "Debug: %s" % str(sub(recv, "DEBUG", defend))
    
     ######END OF TCP CLIENT
     
