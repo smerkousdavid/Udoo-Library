@@ -53,7 +53,7 @@ void Udoo::waiting()
 String Udoo::parseRead(String context)
 {
 	String lines = line();
-	if(lines.indexOf("<%="+context+"=%>") == -1) {return ""};
+	if(lines.indexOf("<%="+context+"=%>") == -1) {return "";}
 	return lines.substring(lines.indexOf("<%="+context+"=%>")+String("<%="+context+"=%>").length(),lines.indexOf(defend));
 }
 
