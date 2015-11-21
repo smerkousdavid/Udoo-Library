@@ -47,7 +47,7 @@ void Udoo::debug(String message)
 void Udoo::waiting()
 {
 	while(line().indexOf("OK") == -1);
-	delay(5);
+	delay(3);
 }
 
 String Udoo::parseRead(String context)
