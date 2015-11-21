@@ -219,6 +219,7 @@ void Udoo::ready()
 void Udoo::waiting()
 {
 	line();
+	delay(5);
 }
 #undef line
 
