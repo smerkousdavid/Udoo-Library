@@ -20,6 +20,7 @@ TCon = False
 #END
 
 #CLIENT UDP
+usock = None
 useUDP = False
 UDPip = None
 UDPport = None
@@ -71,7 +72,7 @@ def there():
 
 ########TCP CLIENT###############
 def TCPstart(full):
-    global TCPip, TCPport, useTCP, tsock
+    global TCPip, TCPport, useTCP, tsock, defend
     TCPip = str(sub(full, "TCPstart", "<%=PORT=%>"))
     TCPport = int(sub(full, "PORT", defend))
     print "The TCPsocket IP is " + TCPip + " and the port " + str(TCPport)
@@ -101,8 +102,8 @@ def TCPrecv():
             TCon = True
         recv = str(tsock.recv(1024))
         print "Got %s" % recv
-        parseSend("TCPgot",recv)
-	tsock.close()
+        writeLine(recv)
+        #parseSend("TCPgot",recv)
 
 def TCPclose():
     global tsock, TCon
@@ -112,6 +113,39 @@ def TCPclose():
         TCon = False
     ready()
 ########END TCP CLIENT###############
+
+########UDP CLIENT###############
+def UDPstart(full):
+    global UDPip, UDPport, useUDP, usock
+    UDPip = str(sub(full, "UDPstart", "<%=PORT=%>"))
+    UDPport = int(sub(full, "PORT", defend))
+    print "The UDPsocket IP is " + UDPip + " and the port " + str(UDPport)
+    useUDP = True
+    called = True
+    ready()
+
+def UDPsend(toSend):
+    global useUDP, UDPip, UDPport, usock
+    sending = str(toSend)
+    if useUDP:
+    	print "Sending UDP packet: %s" % sending
+    	usock = socket(AF_INET, SOCK_DGRAM)
+    	usock.sendto(MESSAGE, (UDPip, UDPport))
+    ready()
+
+def TCPrecv():
+    global useTCP, TCPip, TCPport, TCon, tsock
+    if useTCP:
+        print "Waiting for packet..."
+        if not TCon:
+            tsock = socket(AF_INET, SOCK_STREAM)
+            tsock.connect((TCPip, TCPport))
+            TCon = True
+        recv = str(tsock.recv(1024))
+        print "Got %s" % recv
+        parseSend("TCPgot",recv)
+	tsock.close()
+########END UDP CLIENT###############
 
 
 def val():
