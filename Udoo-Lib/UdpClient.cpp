@@ -6,25 +6,25 @@ Udoo builtinUDP;
 
 void UdpClient::connect(String ip, int port)
 {
-  builtinUDP.writeLine("Udpstart",ip+"<%=PORT=%>"+String(port));
+  builtinUDP.parseWrite("Udpstart",ip+"<%=PORT=%>"+String(port));
   wait();
 }
 
 void UdpClient::send(String toSend)
 {
-  builtinUDP.writeLine("Udpsend", toSend);
+  builtinUDP.parseWrite("Udpsend", toSend);
   wait();
 }
 
 String UdpClient::recv()
 {
-  builtinUDP.writeLine("Udprecv","");
+  builtinUDP.parseWrite("Udprecv","");
   return builtinUDP.readLine();
 }
 
 void UdpClient::close()
 {
-  builtinUDP.writeLine("Udpclose","");
+  builtinUDP.parseWrite("Udpclose","");
   wait();
 }
 
