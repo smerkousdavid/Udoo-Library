@@ -11,34 +11,17 @@ to mess with all the Serial communication on the Sam and Imx6 side
 class Udoo
 {
 	public:
-	void test();
 	void init();
 	void stop();
-	void tcpClient(String ip, int port);
-	void udpClient(String uip, int uport);
-	void clientSend(String message);
-	void clientSendUdp(String messageu);
 	void linuxCommand(String command);
 	String getIp();
-	void tcpServer(int port);
-	void waitForClient();
-	void udpServer(int port);
-	String clientRecv();
-	String clientRecvUdp();
-	void sendToClient(String toSend);
-	void sendToClientUdp(String ip, String toSend);
-	String udpGetClientIp();
-	String recvFromClient();
-	String recvFromClientUdp();
-	void closeTheClient();
-	void tcpClose();
 	void debug(String mess);
-	String readLine(void);
-	void writeLine(String context, String toSend);
+	String readLine();
+	void parseWrite(String context, String toSend);
+	String parseRead(String context);
 	void waiting();
 	private:
 	int _baud;
-	void ready();
 };
 
 class TcpClient
