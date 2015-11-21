@@ -101,7 +101,7 @@ def TCPrecv():
             tsock.connect((TCPip, TCPport))
             TCon = True
         recv = str(tsock.recv(1024))
-        print "Got %s" % recv
+        print "Got: %s" % recv
         writeLine(recv)
         #parseSend("TCPgot",recv)
 
