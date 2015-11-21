@@ -102,8 +102,8 @@ def TCPrecv():
             TCon = True
         recv = str(tsock.recv(1024))
         print "Got: %s" % recv
-        writeLine(recv)
-        #parseSend("TCPgot",recv)
+        #writeLine(recv)
+        parseSend("TCPrecv",recv)
 
 def TCPclose():
     global tsock, TCon
@@ -143,7 +143,7 @@ def UDPrecv():
             TCon = True
         recv = str(tsock.recv(1024))
         print "Got %s" % recv
-        parseSend("TCPgot",recv)
+        parseSend("UDPrecv",recv)
 	tsock.close()
 ########END UDP CLIENT###############
 
