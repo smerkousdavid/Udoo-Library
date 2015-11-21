@@ -1,33 +1,34 @@
 #include "Arduino.h"
 #include "Udoo.h"
 
+Udoo builtinUDP
 #define wait UdpClient::waiter
 
 void UdpClient::connect(String ip, int port)
 {
-  builtin.writeLine("Udpstart",ip+"<%=PORT=%>"+String(port));
+  builtinUDP.writeLine("Udpstart",ip+"<%=PORT=%>"+String(port));
   wait();
 }
 
 void UdpClient::send(String toSend)
 {
-  builtin.writeLine("Udpsend", toSend);
+  builtinUDP.writeLine("Udpsend", toSend);
   wait();
 }
 
 String UdpClient::recv()
 {
-  builtin.writeLine("Udprecv","");
-  return builtin.readLine();
+  builtinUDP.writeLine("Udprecv","");
+  return builtinUDP.readLine();
 }
 
 void UdpClient::close()
 {
-  builtin.writeLine("Udpclose","");
+  builtinUDP.writeLine("Udpclose","");
   wait();
 }
 
 void UdpClient::waiter()
 {
-  builtin.waiting();
+  builtinUDP.waiting();
 }
