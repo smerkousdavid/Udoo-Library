@@ -129,7 +129,7 @@ def UDPsend(toSend):
     sending = str(toSend)
     if useUDP:
     	print "Sending UDP packet: %s" % sending
-    	usock.sendto(MESSAGE, (UDPip, UDPport))
+    	usock.sendto(sending, (UDPip, UDPport))
     ready()
 
 def UDPrecv():
