@@ -136,7 +136,7 @@ def UDPrecv():
     global useUDP, UDPip, UDPport, usock
     if useUDP:
         print "Waiting for packet..."
-        recv = str(usock.recvfrom(1024))
+        recv = str(usock.recvfrom(1024)[0])
         print "Got %s" % recv
         parseSend("UDPrecv",recv)
 ########END UDP CLIENT###############
