@@ -50,7 +50,7 @@ void Udoo::waiting()
 	delay(5);
 }
 
-String Udoo::parseRead(context)
+String Udoo::parseRead(String context)
 {
 	String lines = line();
 	if(lines.indexOf("<%="+context+"=%>") == -1) {return ""};
