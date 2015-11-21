@@ -133,7 +133,7 @@ def UDPsend(toSend):
     	usock.sendto(MESSAGE, (UDPip, UDPport))
     ready()
 
-def TCPrecv():
+def UDPrecv():
     global useTCP, TCPip, TCPport, TCon, tsock
     if useTCP:
         print "Waiting for packet..."
