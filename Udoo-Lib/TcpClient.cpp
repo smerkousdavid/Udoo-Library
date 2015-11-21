@@ -1,34 +1,34 @@
 #include "Arduino.h"
 #include "Udoo.h"
 
-Udoo builtin;
+Udoo builtinTCP;
 #define wait TcpClient::waiter
 
 void TcpClient::connect(String ip, int port)
 {
-  builtin.writeLine("TCPstart",ip+"<%=PORT=%>"+String(port));
+  builtinTCP.parseWrite("TCPstart",ip+"<%=PORT=%>"+String(port));
   wait();
 }
 
 void TcpClient::send(String toSend)
 {
-  builtin.writeLine("TCPsend", toSend);
+  builtinTCP.parseWrite("TCPsend", toSend);
   wait();
 }
 
 String TcpClient::recv()
 {
-  builtin.writeLine("TCPrecv","");
-  return builtin.readLine();
+  builtinTCP.parseWrite("TCPrecv","");
+  return builtinTCP.parseRead("TCPrecv");
 }
 
 void TcpClient::close()
 {
-  builtin.writeLine("TCPclose","");
+  builtinTCP.parseWrite("TCPclose","");
   wait();
 }
 
 void TcpClient::waiter()
 {
-  builtin.waiting();
+  builtinTCP.waiting();
 }
