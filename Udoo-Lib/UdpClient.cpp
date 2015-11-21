@@ -1,7 +1,6 @@
 #include "Arduino.h"
 #include "Udoo.h"
 
-Udoo builtin;
 #define wait UdpClient::waiter
 
 void UdpClient::connect(String ip, int port)
