@@ -20,7 +20,7 @@ TCon = False
 #END
 
 #CLIENT UDP
-usock = None
+usock = socket(AF_INET, SOCK_DGRAM)
 useUDP = False
 UDPip = None
 UDPport = None
@@ -129,22 +129,16 @@ def UDPsend(toSend):
     sending = str(toSend)
     if useUDP:
     	print "Sending UDP packet: %s" % sending
-    	usock = socket(AF_INET, SOCK_DGRAM)
     	usock.sendto(MESSAGE, (UDPip, UDPport))
     ready()
 
 def UDPrecv():
-    global useTCP, TCPip, TCPport, TCon, tsock
-    if useTCP:
+    global useUDP, UDPip, UDPport, usock
+    if useUDP:
         print "Waiting for packet..."
-        if not TCon:
-            tsock = socket(AF_INET, SOCK_STREAM)
-            tsock.connect((TCPip, TCPport))
-            TCon = True
-        recv = str(tsock.recv(1024))
+        recv = str(usock.recvfrom(1024))
         print "Got %s" % recv
         parseSend("UDPrecv",recv)
-	tsock.close()
 ########END UDP CLIENT###############
 
 
@@ -153,8 +147,8 @@ def val():
     recv = str(readLine())
     if not find(recv, defend):
         return None
-    
-    ######TCP CLIENT
+        
+    ######TCP CLIENT#######
     if fFind(recv, "TCPsend"):
         TCPsend(sub(recv, "TCPsend", defend))
         
@@ -166,11 +160,21 @@ def val():
 
     if fFind(recv, "TCPrecv"):
     	TCPrecv()
-    	
+    #####END TCP CLIENT#####
+    
+    ######UDP CLIENT#######
+    if fFind(recv, "UDPsend"):
+        UDPsend(sub(recv, "UDPsend", defend))
+    
+    if fFind(recv, "UDPstart"):
+        UDPstart(recv)
+
+    if fFind(recv, "UDPrecv"):
+    	UDPrecv()
+    #####END TCP CLIENT#####
+    
     if fFind(recv, "DEBUG"):
     	print "Debug: %s" % str(sub(recv, "DEBUG", defend))
-   
-    ######END OF TCP CLIENT
     
 
 def main():
