@@ -143,30 +143,29 @@ def TCPserver():
         print "Got client at %s" % str(addr[0])
         parseSend("CLIENT","CLIENTCON")
         closed = False
-        while not TCPsend or TCPrecv or TCPclose:
-            sleep(0.2)
-            while not closed:
-                if TCPsend:
-                    print "Sending to client"
-                    conn.sendall(TCPval)
-                    ready()
-                    TCPsend = False
-                    TCPval = ""
-                if TCPrecv:
-                    print "Waiting for input"
-                    got = conn.recv(1023)
-                    print "Got from client %s" % str(got)
-                    TCPrecv = False
-                    parseSend("TCPSERVrecv",str(got))
-                if TCPclose:
-                    print "Closing the client"
-                    conn.close()
-                    ready()
-                    TCPclose = False
-                    closed = True
-            closed = False
-            print "Closed..."
-        print "Inner loop"
+        while not TCPsend and not TCPrecv and not TCPclose:
+            sleep(0.01)
+        while not closed:
+            if TCPsend:
+                print "Sending to client"
+                conn.sendall(TCPval)
+                ready()
+                TCPsend = False
+                TCPval = ""
+            if TCPrecv:
+                print "Waiting for input"
+                got = conn.recv(1023)
+                print "Got from client %s" % str(got)
+                TCPrecv = False
+                parseSend("TCPSERVrecv",str(got))
+            if TCPclose:
+                print "Closing the client"
+                conn.close()
+                ready()
+                TCPclose = False
+                closed = True
+        closed = False
+        print "Closed..."
     tserv.close()
 #################END TCP SERVER####################    
     
