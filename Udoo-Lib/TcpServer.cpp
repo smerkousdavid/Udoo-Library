@@ -12,7 +12,7 @@ void TcpServer::start(int port)
 
 void TcpServer::clientWait(int waitnum)
 {
-	while(line().indexOf("CLIENT") == -1);
+  while(line().indexOf("CLIENT") == -1);
   delay(1);
   delay(waitnum);
 }
