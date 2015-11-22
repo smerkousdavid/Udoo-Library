@@ -130,6 +130,7 @@ def TCPserver():
     tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     tserv.bind(('',TCPSERVport))
     print "Started TCP Server on port %d" % (TCPSERVport)
+    tserv.listen(1)
     closed = True
     while useTCPserver:
         print "\nWaiting for connection with client...\n"
