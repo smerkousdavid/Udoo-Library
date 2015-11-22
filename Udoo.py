@@ -130,10 +130,11 @@ def TCPserver():
     tserv.bind(('',TCPSERVport)
     print "Started TCP Server on port %d" % TCPSERVport
     closed = True
-    while True:
+    while useTCPserver:
         print "\nWaiting for connection with client...\n"
         conn, addr = tserv.accept()
         print "Got client at %s" % str(addr[0])
+        ready()
         closed = False
         while not TCPsend or TCPrecv or TCPclose:
             sleep(0.05)
@@ -158,6 +159,7 @@ def TCPserver():
                     closed = True
             closed = False
             print "Closed..."
+    tserv.close()
 #################END TCP SERVER####################    
     
 
@@ -191,7 +193,7 @@ def UDPrecv():
 
 
 def val():
-    global defend
+    global defend, useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval 
     recv = str(readLine())
     if not find(recv, defend):
         return None
@@ -212,17 +214,23 @@ def val():
     
     ######TCP SERVER#######
     if fFind(recv, "TCPSERVsend"):
-        TCPsend(sub(recv, "TCPSERVsend", defend))
+        TCPval = sub(recv,"TCPSERVsend",defend)
+        TCPsend = True
         
     if fFind(recv, "TCPSERVclose"):
-        TCPclose()
+        TCPclose = True
+    
+    if fFind(recv, "TCPSERVstop"):
+        useTCPserver = False
     
     if fFind(recv, "TCPSERVstart"):
+        useTCPserver = True
+        TCPSERVport = int(str(sub(recv,"TCPSERVstart",defend)))
         SERVERTHREAD = Thread(target=TCPserver)
         SERVERTHREAD.start()
     
     if fFind(recv, "TCPSERVrecv"):
-    	TCPrecv()
+    	TCPrecv = True
     #####END TCP SERVER#####
     
     ######UDP CLIENT#######
