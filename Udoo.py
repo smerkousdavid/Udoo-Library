@@ -27,6 +27,16 @@ TCPsend = False
 TCPrecv = False
 TCPclose = False
 TCPval = "N/A" #None crashes it
+#END
+
+#SERVER UDP
+SERVERTHREADUDP = None
+useUDPserver = False
+UDPSERVport = None
+UDPsend = False
+UDPrecv = False
+UDPval = "N/A" #None crashes it
+#END
 
 #CLIENT UDP
 usock = socket(AF_INET, SOCK_DGRAM)
@@ -154,7 +164,7 @@ def TCPserver():
                 TCPval = ""
             if TCPrecv:
                 print "Waiting for input"
-                got = conn.recv(1023)
+                got = conn.recv(1024)
                 print "Got from client %s" % str(got)
                 TCPrecv = False
                 parseSend("TCPSERVrecv",str(got))
@@ -169,7 +179,37 @@ def TCPserver():
     tserv.close()
 #################END TCP SERVER####################    
     
-
+############UDP SERVER###############
+def UDPserver():
+    global useUDPserver, UDPSERVport, UDPsend, UDPrecv, UDPval
+    userv = socket(AF_INET, SOCK_DGRAM)
+    #tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    userv.bind(('',UDPSERVport))
+    print "Started UDP Server on port %d" % (UDPSERVport)
+    userv.listen(1)
+    RECV = False
+    UDPsend = False
+    UDPval = "N/A"
+    UDPrecv = False
+    while useUDPserver:
+        while not UDPsend and not UDPrecv:
+            sleep(0.01)
+        if UDPsend and RECV:
+            print "Sending to client"
+            userv.sendto(TCPval, addr)
+            ready()
+            UDPsend = False
+            UDPval = ""
+        if UDPrecv:
+            print "Waiting for input"
+            data, addr = userv.recvfrom(1024)
+            print "Got from client %s" % str(data)
+            UDPrecv = False
+            parseSend("UDPSERVrecv",str(data))
+            RECV = True
+        print "Closed..."
+    userv.close()
+#################END UDP SERVER####################    
 
 ########UDP CLIENT###############
 def UDPstart(full):
@@ -243,6 +283,28 @@ def val():
     if fFind(recv, "TCPSERVrecv"):
     	TCPrecv = True
     #####END TCP SERVER#####
+    
+    ######UDP SERVER#######
+    if fFind(recv, "UDPSERVsend"):
+        TCPval = str(sub(recv, "UDPSERVsend", defend))
+        sleep(0.07) #Make sure loop has finished
+        UDPsend = True
+    
+    if fFind(recv, "UDPSERVstop"):
+        useUDPserver = False
+        ready()
+    
+    if fFind(recv, "UDPSERVstart"):
+        useUDPserver = True
+        UDPSERVport = int(str(sub(recv,"UDPSERVstart",defend)))
+        SERVERTHREADUDP = Thread(target=UDPserver)
+        SERVERTHREADUDP.start()
+        sleep(0.5)
+        ready()
+    
+    if fFind(recv, "UDPSERVrecv"):
+    	UDPrecv = True
+    #####END UDP SERVER#####
     
     ######UDP CLIENT#######
     if fFind(recv, "UDPsend"):
