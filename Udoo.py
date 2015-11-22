@@ -127,8 +127,8 @@ def TCPclose():
 def TCPserver():
     global useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval
     tserv = socket(AF_INET, SOCK_STREAM)
-    tserv.bind(('',TCPSERVport)
-    print "Started TCP Server on port %d" % TCPSERVport
+    tserv.bind(('',TCPSERVport))
+    print "Started TCP Server on port %d" % (TCPSERVport)
     closed = True
     while useTCPserver:
         print "\nWaiting for connection with client...\n"
