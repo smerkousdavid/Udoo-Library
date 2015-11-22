@@ -166,6 +166,7 @@ def TCPserver():
                     closed = True
             closed = False
             print "Closed..."
+        print "Inner loop"
     tserv.close()
 #################END TCP SERVER####################    
     
