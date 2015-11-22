@@ -26,7 +26,7 @@ TCPSERVport = None
 TCPsend = False
 TCPrecv = False
 TCPclose = False
-TCPval = None
+TCPval = "N/A" #None crashes it
 
 #CLIENT UDP
 usock = socket(AF_INET, SOCK_DGRAM)
