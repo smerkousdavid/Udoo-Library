@@ -43,6 +43,7 @@ class TcpServer
 	void send(String toSend);
 	String recv();
 	void close();
+	void stop();
 	private:
 	void waiter();
 };
@@ -53,7 +54,6 @@ class UdpClient
 	void connect(String ip, int port);
 	void send(String toSend);
 	String recv();
-	void stop();
 	private:
 	void waiter();
 };
