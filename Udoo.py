@@ -3,7 +3,7 @@ __author__ = 'David'
 
 from serial import Serial
 from time import sleep
-from socket import socket, AF_INET, SOCK_STREAM, SOCK_DGRAM, gethostbyname, gethostname, SOL_SOCKET, SO_REUSEADDR
+from socket import socket, AF_INET, SOCK_STREAM, SOCK_DGRAM, gethostbyname, gethostname, SOL_SOCKET, SO_REUSEADDR, gethostbyname_ex
 from subprocess import Popen, PIPE, STDOUT
 from threading import Thread
 from sys import argv, exit
@@ -250,7 +250,7 @@ def val():
     	print "Debug: %s" % str(sub(recv, "DEBUG", defend))
     	
     if fFind(recv, "GETIP"):
-        IP = ([l for l in ([ip for ip in socket.gethostbyname_ex(socket.gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 80)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1]]) if l][0][0]) #Got this snippet online
+        IP = ([l for l in ([ip for ip in gethostbyname_ex(gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 80)), s.getsockname()[0], s.close()) for s in [socket(AF_INET, SOCK_DGRAM)]][0][1]]) if l][0][0]) #Got this snippet online
         parseSend("GETIP", str(IP))
         print "Current device IP: %s" % str(IP)
     
