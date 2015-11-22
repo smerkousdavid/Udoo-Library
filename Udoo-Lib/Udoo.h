@@ -53,6 +53,7 @@ class UdpClient
 	void connect(String ip, int port);
 	void send(String toSend);
 	String recv();
+	void stop();
 	private:
 	void waiter();
 };
@@ -62,6 +63,7 @@ class UdpServer
 	public:
 	void start(int port);
 	void send(String toSend);
+	void stop();
 	String recv();
 	private:
 	void waiter();
