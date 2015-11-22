@@ -10,11 +10,11 @@ void TcpServer::start(int port)
   wait();
 }
 
-void TcpServer::clientWait(int wait)
+void TcpServer::clientWait(int waitnum)
 {
   wait();
   delay(1);
-  delay(wait);
+  delay(waitnum);
 }
 
 void TcpServer::send(String toSend)
