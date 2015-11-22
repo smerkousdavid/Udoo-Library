@@ -10,6 +10,12 @@ void TcpServer::start(int port)
   wait();
 }
 
+void TcpServer::stop()
+{
+  builtinTCPS.parseWrite("TCPSERVstop","";
+  wait();
+}
+
 void TcpServer::clientWait(int waitnum)
 {
   while(builtinTCPS.parseRead("CLIENT").indexOf("CLIENT") == -1);
