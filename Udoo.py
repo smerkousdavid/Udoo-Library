@@ -139,17 +139,17 @@ def TCPserver():
         parseSend("CLIENT","CLIENTCON")
         closed = False
         while not TCPsend or TCPrecv or TCPclose:
-            sleep(0.05)
+            sleep(0.2)
             while not closed:
                 if TCPsend:
                     print "Sending to client"
-                    conn.send(TCPval)
+                    conn.sendall(TCPval)
                     TCPsend = False
                     TCPval = ""
                     ready()
                 if TCPrecv:
                     print "Waiting for input"
-                    got = conn.recv(1024)
+                    got = conn.recv(1023)
                     print "Got from client %s" % str(got)
                     TCPrecv = False
                     parseSend("TCPSERVrecv",str(got))
@@ -216,7 +216,7 @@ def val():
     
     ######TCP SERVER#######
     if fFind(recv, "TCPSERVsend"):
-        print sub(recv, "TCPSERVsend", defend)
+        print "HOJDONSOIDFSIDCOSIDBFSIF: "+sub(recv, "TCPSERVsend", defend)
         #TCPval = str(parseRec("TCPSERVsend"))
         sleep(0.07) #Make sure loop has finished
         print "Sending %s" % str(TCPval)
