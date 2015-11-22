@@ -138,7 +138,7 @@ def TCPclose():
 def TCPserver():
     global useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval
     tserv = socket(AF_INET, SOCK_STREAM)
-    #tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     tserv.bind(('',TCPSERVport))
     print "Started TCP Server on port %d" % (TCPSERVport)
     tserv.listen(1)
@@ -183,10 +183,9 @@ def TCPserver():
 def UDPserver():
     global useUDPserver, UDPSERVport, UDPsend, UDPrecv, UDPval
     userv = socket(AF_INET, SOCK_DGRAM)
-    #tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-    userv.bind(('',UDPSERVport))
+    userv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    userv.bind(("",int(UDPSERVport)))
     print "Started UDP Server on port %d" % (UDPSERVport)
-    userv.listen(1)
     RECV = False
     UDPsend = False
     UDPval = "N/A"
