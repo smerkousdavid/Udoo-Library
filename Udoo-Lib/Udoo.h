@@ -57,5 +57,15 @@ class UdpClient
 	void waiter();
 };
 
+class UdpServer
+{
+	public:
+	void start(int port);
+	void send(String toSend);
+	String recv();
+	private:
+	void waiter();
+};
+
 
 #endif
