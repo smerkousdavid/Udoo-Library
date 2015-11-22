@@ -184,7 +184,7 @@ def UDPserver():
     global useUDPserver, UDPSERVport, UDPsend, UDPrecv, UDPval
     userv = socket(AF_INET, SOCK_DGRAM)
     userv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
-    userv.bind(("",int(UDPSERVport)))
+    userv.bind(("",UDPSERVport))
     print "Started UDP Server on port %d" % (UDPSERVport)
     RECV = False
     UDPsend = False
@@ -239,7 +239,7 @@ def UDPrecv():
 
 
 def val():
-    global defend, useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval 
+    global defend, useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval, useUDPserver, UDPSERVport, UDPsend, UDPrecv, UDPclose, UDPval  
     recv = str(readLine())
     if not find(recv, defend):
         return None
@@ -285,7 +285,7 @@ def val():
     
     ######UDP SERVER#######
     if fFind(recv, "UDPSERVsend"):
-        TCPval = str(sub(recv, "UDPSERVsend", defend))
+        UDPval = str(sub(recv, "UDPSERVsend", defend))
         sleep(0.07) #Make sure loop has finished
         UDPsend = True
     
@@ -296,7 +296,6 @@ def val():
     if fFind(recv, "UDPSERVstart"):
         useUDPserver = True
         UDPSERVport = int(str(sub(recv,"UDPSERVstart",defend)))
-        print "PORT PORT PORT: %d" % UDPSERVport
         SERVERTHREADUDP = Thread(target=UDPserver)
         SERVERTHREADUDP.start()
         sleep(0.5)
