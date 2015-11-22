@@ -35,6 +35,18 @@ class TcpClient
 	void waiter();
 };
 
+class TcpServer
+{
+	public:
+	void start(int port);
+	void clientWait(int wait);
+	void send(String toSend);
+	String recv();
+	void close();
+	private:
+	void waiter();
+};
+
 class UdpClient
 {
 	public:
