@@ -136,7 +136,7 @@ def TCPserver():
         print "\nWaiting for connection with client...\n"
         conn, addr = tserv.accept()
         print "Got client at %s" % str(addr[0])
-        ready()
+        parseSend("CLIENT","CLIENTCON")
         closed = False
         while not TCPsend or TCPrecv or TCPclose:
             sleep(0.05)
@@ -144,20 +144,20 @@ def TCPserver():
                 if TCPsend:
                     print "Sending to client"
                     conn.send(TCPval)
-                    ready()
                     TCPsend = False
                     TCPval = ""
+                    ready()
                 if TCPrecv:
                     print "Waiting for input"
                     got = conn.recv(1024)
                     print "Got from client %s" % str(got)
-                    parseSend("TCPSERVrecv",str(got))
                     TCPrecv = False
+                    parseSend("TCPSERVrecv",str(got))
                 if TCPclose:
                     print "Closing the client"
                     conn.close()
-                    ready()
                     TCPclose = False
+                    ready()
                     closed = True
             closed = False
             print "Closed..."
@@ -217,6 +217,7 @@ def val():
     ######TCP SERVER#######
     if fFind(recv, "TCPSERVsend"):
         TCPval = str(sub(recv,"TCPSERVsend",defend))
+        sleep(0.07) #Make sure loop has finished
         print "Sending %s" % str(TCPval)
         TCPsend = True
         
@@ -225,12 +226,14 @@ def val():
     
     if fFind(recv, "TCPSERVstop"):
         useTCPserver = False
+        ready()
     
     if fFind(recv, "TCPSERVstart"):
         useTCPserver = True
         TCPSERVport = int(str(sub(recv,"TCPSERVstart",defend)))
         SERVERTHREAD = Thread(target=TCPserver)
         SERVERTHREAD.start()
+        ready()
     
     if fFind(recv, "TCPSERVrecv"):
     	TCPrecv = True
