@@ -12,7 +12,7 @@ void TcpServer::start(int port)
 
 void TcpServer::stop()
 {
-  builtinTCPS.parseWrite("TCPSERVstop","";
+  builtinTCPS.parseWrite("TCPSERVstop","");
   wait();
 }
 
