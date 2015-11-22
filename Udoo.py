@@ -190,9 +190,10 @@ def UDPserver():
     UDPsend = False
     UDPval = "N/A"
     UDPrecv = False
+    ready()
     while useUDPserver:
         while not UDPsend and not UDPrecv:
-            sleep(0.01)
+            sleep(0.001)
         if UDPsend and RECV:
             print "Sending to client"
             userv.sendto(TCPval, addr)
@@ -298,8 +299,6 @@ def val():
         UDPSERVport = int(str(sub(recv,"UDPSERVstart",defend)))
         SERVERTHREADUDP = Thread(target=UDPserver)
         SERVERTHREADUDP.start()
-        sleep(0.5)
-        ready()
     
     if fFind(recv, "UDPSERVrecv"):
     	UDPrecv = True
