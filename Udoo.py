@@ -297,6 +297,7 @@ def val():
     if fFind(recv, "UDPSERVstart"):
         useUDPserver = True
         UDPSERVport = int(str(sub(recv,"UDPSERVstart",defend)))
+        print "PORT PORT PORT: %d" % UDPSERVport
         SERVERTHREADUDP = Thread(target=UDPserver)
         SERVERTHREADUDP.start()
         sleep(0.5)
