@@ -216,7 +216,8 @@ def val():
     
     ######TCP SERVER#######
     if fFind(recv, "TCPSERVsend"):
-        TCPval = str(sub(recv,"TCPSERVsend",defend))
+        print sub(recv, "TCPSERVsend", defend)
+        #TCPval = str(parseRec("TCPSERVsend"))
         sleep(0.07) #Make sure loop has finished
         print "Sending %s" % str(TCPval)
         TCPsend = True
