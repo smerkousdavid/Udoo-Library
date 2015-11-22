@@ -71,11 +71,12 @@ def parseRec(type):
     return sub(readLine(), type, defend)
 
 def there():
-    parseSend("OK", "OK")
-    get = parseRec("OK")
-    if find(get, "OK"):
-        print "Found the SAM3x\n"
-    else:
+    try:
+        parseSend("OK", "OK")
+        get = parseRec("OK")
+        if find(get, "OK"):
+            print "Found the SAM3x\n"
+    except:
         print "Failed to find the SAM3x\nMake sure you put\nudoo.init()\nIn your arduino code\n Or reset device" \
         + "\nContinuing, this will use Serial line..."
 
@@ -132,6 +133,10 @@ def TCPserver():
     print "Started TCP Server on port %d" % (TCPSERVport)
     tserv.listen(1)
     closed = True
+    TCPsend = False
+    TCPclose = False
+    TCPval = "N/A"
+    TCPrecv = False
     while useTCPserver:
         print "\nWaiting for connection with client...\n"
         conn, addr = tserv.accept()
@@ -144,6 +149,7 @@ def TCPserver():
                 if TCPsend:
                     print "Sending to client"
                     conn.sendall(TCPval)
+                    ready()
                     TCPsend = False
                     TCPval = ""
                 if TCPrecv:
@@ -155,6 +161,7 @@ def TCPserver():
                 if TCPclose:
                     print "Closing the client"
                     conn.close()
+                    ready()
                     TCPclose = False
                     closed = True
             closed = False
@@ -217,15 +224,9 @@ def val():
         TCPval = str(sub(recv, "TCPSERVsend", defend))
         sleep(0.07) #Make sure loop has finished
         TCPsend = True
-        while TCPsend:
-            sleep(0.001)
-        ready()
         
     if fFind(recv, "TCPSERVclose"):
         TCPclose = True
-        while TCPclose:
-            sleep(0.001)
-        ready()
     
     if fFind(recv, "TCPSERVstop"):
         useTCPserver = False
