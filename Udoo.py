@@ -127,7 +127,7 @@ def TCPclose():
 def TCPserver():
     global useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval
     tserv = socket(AF_INET, SOCK_STREAM)
-    tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+    #tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     tserv.bind(('',TCPSERVport))
     print "Started TCP Server on port %d" % (TCPSERVport)
     tserv.listen(1)
