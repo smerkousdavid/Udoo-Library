@@ -3,7 +3,7 @@ __author__ = 'David'
 
 from serial import Serial
 from time import sleep
-from socket import socket, AF_INET, SOCK_STREAM, SOCK_DGRAM, gethostbyname, gethostname
+from socket import socket, AF_INET, SOCK_STREAM, SOCK_DGRAM, gethostbyname, gethostname, SOL_SOCKET, SO_REUSEADDR
 from subprocess import Popen, PIPE, STDOUT
 from threading import Thread
 from sys import argv, exit
@@ -127,6 +127,7 @@ def TCPclose():
 def TCPserver():
     global useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval
     tserv = socket(AF_INET, SOCK_STREAM)
+    tserv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
     tserv.bind(('',TCPSERVport))
     print "Started TCP Server on port %d" % (TCPSERVport)
     closed = True
