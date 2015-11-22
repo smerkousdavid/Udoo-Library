@@ -42,6 +42,7 @@ String Udoo::getIp()
 void Udoo::debug(String message)
 {
 	writer("DEBUG",message);
+	ready();
 }
 
 void Udoo::waiting()
