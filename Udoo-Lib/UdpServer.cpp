@@ -12,7 +12,7 @@ void UdpServer::start(int port)
 
 void UdpServer::stop()
 {
-  builtinUDPS.parseWrite("UDPSERVstop","";
+  builtinUDPS.parseWrite("UDPSERVstop","");
   wait();
 }
 
