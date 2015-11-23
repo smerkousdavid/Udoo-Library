@@ -15,9 +15,9 @@ void setup() {
 void loop() {
   server.clientWait(); //Wait until a client connects
   debug("Got Client");
-  debug(udoo.recv()); //Recieve from server and print to console
-  udoo.send("Got it bud!"); //Send back to Client
-  udoo.close(); //Close the client connection
+  debug(server.recv()); //Recieve from server and print to console
+  server.send("Got it bud!"); //Send back to Client
+  server.close(); //Close the client connection
 
 }
 
