@@ -367,7 +367,7 @@ def val():
     #####END TCP CLIENT#####
     
     if fFind(recv, "DEBUG"):
-    	print "Debug: %s" % str(sub(recv, "DEBUG", defend)).replace('\\n', "\n done")
+    	print "Debug: %s" % str(sub(recv, "DEBUG", defend)).replace('\\n', "\n")
     	ready()
     	
     if fFind(recv, "GETIP"):
