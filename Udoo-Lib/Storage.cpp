@@ -7,7 +7,7 @@ Udoo builtinStor;
 String Storage::readFile(String directory)
 {
   builtinStor.parseWrite("READfile",directory);
-  return builtinStor.parseRead("PULLfile");
+  return String(builtinStor.parseRead("PULLfile")).replace('\\n','\n');
 }
 
 void Storage::writeFile(String directory, String toWrite)
