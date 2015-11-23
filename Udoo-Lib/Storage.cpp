@@ -8,20 +8,20 @@ String Storage::readFile(String directory)
 {
   builtinStor.parseWrite("READfile",directory);
   String replacer = String(builtinStor.parseRead("PULLfile"));
-  replacer.replace('<%=newline=%>','\n');
+  replacer.replace("\\n","\n");
   return replacer;
 }
 
 void Storage::writeFile(String directory, String toWrite)
 {
-  toWrite.replace('\n','<%=newline=%>');
+  toWrite.replace("\n","\\n");
   builtinStor.parseWrite("WRITEfile", directory+"<%=TOWRITE=%>"+String(toWrite));
   wait();
 }
 
 void Storage::appendTo(String directory, String toWrite)
 {
-  toWrite.replace('\n','<%=newline=%>');
+  toWrite.replace("\n","\\n");
   builtinStor.parseWrite("APPENDfile", directory+"<%=TOWRITE=%>"+String(toWrite));
   wait();
 }

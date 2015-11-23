@@ -41,7 +41,7 @@ String Udoo::getIp()
 
 void Udoo::debug(String message)
 {
-	message.replace('\n', '<%=newline=%>');
+	message.replace("\n","\\n");
 	writer("DEBUG", message);
 	ready();
 }
