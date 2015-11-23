@@ -101,14 +101,14 @@ def readFile(directory):
 def writeFile(directory, toWrite):
     print "Writing to %s" % str(directory)
     with open(directory, "w") as write:
-        write.write(str(toWrite)+"\n")
+        write.write(str(toWrite).replace('\\n', '\n'))
     write.close()
     ready()
     
 def appendLine(directory, toAppend):
     print "Appending to %s" % str(directory)
     with open(directory, "a+") as append:
-        append.write(toAppend+"\n")
+        append.write(str(toAppend).replace('\\n', '\n'))
     append.close()
     ready()
     
