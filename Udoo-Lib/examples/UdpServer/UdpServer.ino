@@ -11,8 +11,8 @@ void setup() {
 
 void loop() {
   String response = server.recv(); //Must recieve first before sending for udp
-  udoo.debug("Got from client: "+response); //Send to debuging
-  udoo.send("From the Udoo"); //Send message back to client
+  debug("Got from client: "+response); //Send to debuging
+  server.send("From the Udoo"); //Send message back to client
 }
 
 void debug(String message)
