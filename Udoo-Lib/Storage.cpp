@@ -12,13 +12,13 @@ String Storage::readFile(String directory)
 
 void Storage::writeFile(String directory, String toWrite)
 {
-  builtinStor.parseWrite("WRITEfile", directory+"<%=TOWRITE=%>"+toWrite);
+  builtinStor.parseWrite("WRITEfile", directory+"<%=TOWRITE=%>"+String(toWrite).replace('\n','\\n'));
   wait();
 }
 
 void Storage::appendTo(String directory, String toWrite)
 {
-  builtinStor.parseWrite("APPENDfile", directory+"<%=TOWRITE=%>"+toWrite);
+  builtinStor.parseWrite("APPENDfile", directory+"<%=TOWRITE=%>"+String(toWrite).replace('\n','\\n'));
   wait();
 }
 
