@@ -284,7 +284,7 @@ def val():
     if fFind(recv, "APPENDfile"):
         direct = str(sub(recv,"APPENDfile","<%=TOWRITE=%>"))
         toWrite = str(sub(recv,"TOWRITE", defend))
-        appendFile(direct, toWrite)
+        appendLine(direct, toWrite)
     
     if fFind(recv, "READline"):
         direct = str(sub(recv,"READline","<%=LINES=%>"))
