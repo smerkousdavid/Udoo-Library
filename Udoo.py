@@ -109,10 +109,10 @@ def appendLine(directory, toAppend):
         append.write(toAppend)
     ready()
     
-def readFileLine(directory, line):
-    print "Pulling line: " +str(line)+ " from %s" % str(directory)
+def readFileLine(directory, lines):
+    print "Pulling line: " +str(lines)+ " from %s" % str(directory)
     with open(directory, "r") as line:
-        toRet = line.read().splitlines()[int(line)]
+        toRet = line.read().splitlines()[int(lines)]
     parseSend("PULLline", toRet)
 #####END STORAGE####
 
