@@ -278,17 +278,17 @@ def val():
     
     if fFind(recv, "WRITEfile"):
         direct = str(sub(recv,"WRITEfile","<%=TOWRITE=%>"))
-        toWrite = str(sub(recv,"TOWRITE", defend)
+        toWrite = str(sub(recv,"TOWRITE", defend))
         writeFile(direct, toWrite)
     
     if fFind(recv, "APPENDfile"):
         direct = str(sub(recv,"APPENDfile","<%=TOWRITE=%>"))
-        toWrite = str(sub(recv,"TOWRITE", defend)
+        toWrite = str(sub(recv,"TOWRITE", defend))
         appendFile(direct, toWrite)
     
     if fFind(recv, "READline"):
         direct = str(sub(recv,"READline","<%=LINES=%>"))
-        lines = str(sub(recv,"LINES", defend)
+        lines = str(sub(recv,"LINES", defend))
         readFileLine(direct, int(lines))
     ###END STORAGE###
     
