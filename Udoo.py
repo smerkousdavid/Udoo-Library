@@ -95,8 +95,8 @@ def readFile(directory):
     print "Reading from %s" % str(directory)
     with open(directory, "r") as read:
         toRet = read.read()
+    parseSend("PULLfile",str(toRet).replace('\n',''))
     read.close()
-    parseSend("PULLfile",str(toRet))
 
 def writeFile(directory, toWrite):
     print "Writing to %s" % str(directory)
