@@ -36,7 +36,7 @@ void Udoo::linuxCommand(String command)
 String Udoo::getIp()
 {
 	writer("GETIP","");
-	return parseRead("GETIP");
+	return reader("GETIP");
 }
 
 void Udoo::debug(String message)
