@@ -69,5 +69,16 @@ class UdpServer
 	void waiter();
 };
 
+class Storage
+{
+	public:
+	String readFile(String directory);
+	void writeFile(String directory, String toWrite);
+	void appendTo(String directory, String toWrite);
+	String readLine(String directory, int line);
+	private:
+	void waiter();
+};
+
 
 #endif
