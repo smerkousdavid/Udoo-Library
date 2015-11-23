@@ -196,7 +196,7 @@ def UDPserver():
             sleep(0.001)
         if UDPsend and RECV:
             print "Sending to client"
-            userv.sendto(TCPval, addr)
+            userv.sendto(UDPval, addr)
             ready()
             UDPsend = False
             UDPval = ""
