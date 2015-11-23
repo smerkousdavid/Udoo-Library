@@ -21,16 +21,15 @@ readFile  KEYWORD2
 writeFile KEYWORD2
 appendTo  KEYWORD2
 readLine  KEYWORD2
-debug KEYWORD2
 clientWait  KEYWORD2
 connect KEYWORD2
-debug	KEYWORD2
 getIp	KEYWORD2
 TcpServer KEYWORD2
 TcpClient KEYWORD2
 UdpClient KEYWORD2
 UdpServer KEYWORD2
 Storage KEYWORD2
+debug KEYWORD2
 Udoo	KEYWORD2
 
 ######################################
