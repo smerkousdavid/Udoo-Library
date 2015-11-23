@@ -101,7 +101,7 @@ def readFile(directory):
 def writeFile(directory, toWrite):
     print "Writing to %s" % str(directory)
     with open(directory, "w") as write:
-        write.write(str(toWrite))
+        write.write(str(toWrite)+"\n")
     write.close()
     ready()
     
