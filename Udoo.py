@@ -273,6 +273,7 @@ def UDPrecv():
 def val():
     global defend, useTCPserver, TCPSERVport, TCPsend, TCPrecv, TCPclose, TCPval, useUDPserver, UDPSERVport, UDPsend, UDPrecv, UDPclose, UDPval  
     recv = str(readLine())
+    print "GOT FROM ARDUINO: "+recv
     if not find(recv, defend):
         return None
         
