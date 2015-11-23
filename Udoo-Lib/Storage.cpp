@@ -7,18 +7,22 @@ Udoo builtinStor;
 String Storage::readFile(String directory)
 {
   builtinStor.parseWrite("READfile",directory);
-  return String(builtinStor.parseRead("PULLfile")).replace('<%=newline=%>','\n');
+  String replacer = String(builtinStor.parseRead("PULLfile"));
+  replacer.replace('<%=newline=%>','\n');
+  return replacer;
 }
 
 void Storage::writeFile(String directory, String toWrite)
 {
-  builtinStor.parseWrite("WRITEfile", directory+"<%=TOWRITE=%>"+String(toWrite).replace('\n','<%=newline=%>'));
+  toWrite.replace('\n','<%=newline=%>');
+  builtinStor.parseWrite("WRITEfile", directory+"<%=TOWRITE=%>"+String(toWrite));
   wait();
 }
 
 void Storage::appendTo(String directory, String toWrite)
 {
-  builtinStor.parseWrite("APPENDfile", directory+"<%=TOWRITE=%>"+String(toWrite).replace('\n','<%=newline=%>'));
+  toWrite.replace('\n','<%=newline=%>');
+  builtinStor.parseWrite("APPENDfile", directory+"<%=TOWRITE=%>"+String(toWrite));
   wait();
 }
 
