@@ -13,26 +13,24 @@ NONE_KEY KEYWORD1
 #######################################
 init	KEYWORD2
 stop	KEYWORD2
-test	KEYWORD2
+start KEYWORD2
+send  KEYWORD2
+recv  KEYWORD2
+close KEYWORD2
+readFile  KEYWORD2
+writeFile KEYWORD2
+appendTo  KEYWORD2
+readLine  KEYWORD2
+debug KEYWORD2
+clientWait  KEYWORD2
+connect KEYWORD2
 debug	KEYWORD2
 getIp	KEYWORD2
-tcpClose	KEYWORD2
-tcpServer	KEYWORD2
-tcpClient	KEYWORD2
-udpClient	KEYWORD2
-udpServer	KEYWORD2
-clientSend	KEYWORD2
-waitForClient	KEYWORD2
-clientSendUdp	KEYWORD2
-clientRecv	KEYWORD2
-udpGetClientIp	KEYWORD2
-clientRecvUdp	KEYWORD2
-closeTheClient 	KEYWORD2
-sendToClient 	KEYWORD2
-sendToClientUdp	KEYWORD2
-recvFromClient 	KEYWORD2
-recvFromClientUdp 	KEYWORD2
-linuxCommand	KEYWORD2
+TcpServer KEYWORD2
+TcpClient KEYWORD2
+UdpClient KEYWORD2
+UdpServer KEYWORD2
+Storage KEYWORD2
 Udoo	KEYWORD2
 
 ######################################
