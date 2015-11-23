@@ -109,7 +109,7 @@ def appendLine(directory, toAppend):
         append.write(toAppend)
     ready()
     
-def readLine(directory, line):
+def readFileLine(directory, line):
     print "Pulling line: " +str(line)+ " from %s" % str(directory)
     with open(directory, "r") as line:
         toRet = line.read().splitlines()[int(line)]
@@ -273,7 +273,23 @@ def val():
         return None
         
     #####STORAGE######
-    if fFind(recv, ""
+    if fFind(recv, "READfile"):
+        readFile(str(sub(recv, "READfile", defend)))
+    
+    if fFind(recv, "WRITEfile"):
+        direct = str(sub(recv,"WRITEfile","<%=TOWRITE=%>"))
+        toWrite = str(sub(recv,"TOWRITE", defend)
+        writeFile(direct, toWrite)
+    
+    if fFind(recv, "APPENDfile"):
+        direct = str(sub(recv,"APPENDfile","<%=TOWRITE=%>"))
+        toWrite = str(sub(recv,"TOWRITE", defend)
+        appendFile(direct, toWrite)
+    
+    if fFind(recv, "READline"):
+        direct = str(sub(recv,"READline","<%=LINES=%>"))
+        lines = str(sub(recv,"LINES", defend)
+        readFileLine(direct, int(lines))
     ###END STORAGE###
     
     ######TCP CLIENT#######
