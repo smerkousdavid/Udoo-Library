@@ -5,6 +5,7 @@ Storage storage;
 String file = "/home/ubuntu/Desktop/TEST.txt";
 
 void setup() {
+   udoo.init(); //Start serial line
   /*
     Writing to A file
   */
