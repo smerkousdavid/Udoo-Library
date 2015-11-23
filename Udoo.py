@@ -115,7 +115,7 @@ def appendLine(directory, toAppend):
 def readFileLine(directory, lines):
     print "Pulling line: " +str(lines)+ " from %s" % str(directory)
     with open(directory, "r") as line:
-        toRet = line.read().splitlines()[int(lines)]
+        toRet = line.read().splitlines()[int(lines)].replace('\n','')
     line.close()
     parseSend("PULLline", toRet)
 #####END STORAGE####
@@ -367,7 +367,7 @@ def val():
     #####END TCP CLIENT#####
     
     if fFind(recv, "DEBUG"):
-    	print "Debug: %s" % str(sub(recv, "DEBUG", defend))
+    	print "Debug: %s" % str(sub(recv, "DEBUG", defend)).replace('\n', "\n")
     	ready()
     	
     if fFind(recv, "GETIP"):
