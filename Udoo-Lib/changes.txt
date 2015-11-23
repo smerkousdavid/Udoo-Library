@@ -1,3 +1,4 @@
 8/32/2015 ~3am - David Smerkous - "Added core .h, .cpp, .py files to the library and got really excited"
 8/23/2015 ~7:30am - David Smerkous - "Added this file, including changes.txt, keywords.txt, library.json, library.json"
 8/23/2015 ~ 8am - David Smerkous - "Added doc folder and examples folder"
+11/23/2015 ~ 11am - David Smerkous - "Finished Storage for the Udoo library and going to add the new keywords.txt"
