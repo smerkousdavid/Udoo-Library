@@ -90,6 +90,33 @@ def there():
         print "Failed to find the SAM3x\nMake sure you put\nudoo.init()\nIn your arduino code\n Or reset device" \
         + "\nContinuing, this will use Serial line..."
 
+######STORAGE#######
+def readFile(directory):
+    print "Reading from %s" % str(directory)
+    with open(directory, "r") as read:
+        toRet = read.read()
+    parseSend("PULLfile",str(toRet))
+
+def writeFile(directory, toWrite):
+    print "Writing to %s" % str(directory)
+    with open(directory, "w") as write:
+        write.write(str(toWrite))
+    ready()
+    
+def appendLine(directory, toAppend):
+    print "Appending to %s" % str(directory)
+    with open(directory, "a+") as append:
+        append.write(toAppend)
+    ready()
+    
+def readLine(directory, line):
+    print "Pulling line: " +str(line)+ " from %s" % str(directory)
+    with open(directory, "r") as line:
+        toRet = line.read().splitlines()[int(line)]
+    parseSend("PULLline", toRet)
+#####END STORAGE####
+
+
 ########TCP CLIENT###############
 def TCPstart(full):
     global TCPip, TCPport, useTCP, tsock, defend
@@ -245,6 +272,10 @@ def val():
     if not find(recv, defend):
         return None
         
+    #####STORAGE######
+    if fFind(recv, ""
+    ###END STORAGE###
+    
     ######TCP CLIENT#######
     if fFind(recv, "TCPsend"):
         TCPsend(sub(recv, "TCPsend", defend))
