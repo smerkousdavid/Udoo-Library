@@ -95,24 +95,28 @@ def readFile(directory):
     print "Reading from %s" % str(directory)
     with open(directory, "r") as read:
         toRet = read.read()
+    read.close()
     parseSend("PULLfile",str(toRet))
 
 def writeFile(directory, toWrite):
     print "Writing to %s" % str(directory)
     with open(directory, "w") as write:
         write.write(str(toWrite))
+    write.close()
     ready()
     
 def appendLine(directory, toAppend):
     print "Appending to %s" % str(directory)
     with open(directory, "a+") as append:
-        append.write(toAppend)
+        append.write(toAppend+"\n")
+    append.close()
     ready()
     
 def readFileLine(directory, lines):
     print "Pulling line: " +str(lines)+ " from %s" % str(directory)
     with open(directory, "r") as line:
         toRet = line.read().splitlines()[int(lines)]
+    line.close()
     parseSend("PULLline", toRet)
 #####END STORAGE####
 
