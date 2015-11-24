@@ -99,10 +99,12 @@ def there():
 def serialStart(port, bitrate):
     global usb
     usb = Serial(port, bitrate)
+    ready()
 
 def serialWrite(toWrite):
     global usb
     usb.write(str(toWrite))
+    ready()
 
 def serialRead():
     global usb
@@ -111,6 +113,7 @@ def serialRead():
 def serialStop():
     global usb
     usb.stop()
+    ready()
 ####END USB####
 
 ######STORAGE#######
