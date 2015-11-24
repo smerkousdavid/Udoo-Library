@@ -1,0 +1,9 @@
+Hello, if you are stuck and don't know where to place everything, here you go (Do all of this on the Udoo)
+
+First download this zip and extract it to the desktop. There should be a file called Udoo.py, place it on the desktop for now.
+Second grab the Udoo-Lib folder and place it in /home/ubuntu/Arduino/libraries/ folder
+Third and last open up Arduino, go to file -> examples -> Udoo -> Debug, Flash it to the Udoo, then run the Udoo.py script to see if it printed anything
+
+Thanks, David
+
+Please report any bugs to me
