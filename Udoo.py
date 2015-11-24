@@ -9,7 +9,12 @@ from threading import Thread
 from sys import argv, exit
 
 '''VARS'''
+#Global
 defend = "<%=EOF=%>"
+
+#USB
+usb = None
+#End USB
 
 #CLIENT TCP
 tsock = None
@@ -89,6 +94,24 @@ def there():
     except:
         print "Failed to find the SAM3x\nMake sure you put\nudoo.init()\nIn your arduino code\n Or reset device" \
         + "\nContinuing, this will use Serial line..."
+
+#####USB######
+def serialStart(port, bitrate):
+    global usb
+    usb = Serial(port, bitrate)
+
+def serialWrite(toWrite):
+    global usb
+    usb.write(str(toWrite))
+
+def serialRead():
+    global usb
+    parseSend("SERIALread", str(usb.readline()))
+
+def serialStop():
+    global usb
+    usb.stop()
+####END USB####
 
 ######STORAGE#######
 def readFile(directory):
@@ -367,6 +390,20 @@ def val():
     	UDPrecv()
     #####END TCP CLIENT#####
     
+    ######USB########
+    if fFind(recv, "SERIALstart"):
+        serialStart(str(sub(recv, "SERIALstart", "<%=BIT=%>")), int(str(sub(recv,"BIT",defend))))
+    
+    if fFind(recv, "SERIALstop"):
+        serialStop()
+    
+    if fFind(recv, "SERIALwrite"):
+        serialWrite(str(sub(recv, "SERIALwrite", defend)))
+    
+    if fFind(recv, "SERIALread"):
+        serialRead()
+    ####END USB#####
+    
     if fFind(recv, "DEBUG"):
     	print "Debug: %s" % str(sub(recv, "DEBUG", defend)).replace("\\n","\n")
     	ready()
@@ -375,6 +412,9 @@ def val():
         IP = ([l for l in ([ip for ip in gethostbyname_ex(gethostname())[2] if not ip.startswith("127.")][:1], [[(s.connect(('8.8.8.8', 80)), s.getsockname()[0], s.close()) for s in [socket(AF_INET, SOCK_DGRAM)]][0][1]]) if l][0][0]) #Got this snippet online
         parseSend("GETIP", str(IP))
         print "Current device IP: %s" % str(IP)
+        
+    if fFind(recv, "LINUX"):
+        Thread(target=customCommand,args=[sub(recv, "LINUX", defend)]).start()
     
 
 def main():
