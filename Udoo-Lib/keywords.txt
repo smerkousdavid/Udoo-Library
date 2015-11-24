@@ -16,6 +16,7 @@ stop	             KEYWORD2
                 start	KEYWORD2
 send	             KEYWORD2
 recv	                     KEYWORD2
+          Usb	KEYWORD2
 close		KEYWORD2
    readFile	KEYWORD2
  writeFile	KEYWORD2
