@@ -112,7 +112,7 @@ def serialRead():
 
 def serialStop():
     global usb
-    usb.stop()
+    usb.close()
     ready()
 ####END USB####
 
