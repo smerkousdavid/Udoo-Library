@@ -22,7 +22,7 @@ void Usb::start(String port, int bit)
   wait();
 }
 
-String Usb::stop()
+void Usb::stop()
 {
   builtinUsb.parseWrite("SERIALstop", "");
   wait();
