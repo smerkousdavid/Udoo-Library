@@ -80,5 +80,15 @@ class Storage
 	void waiter();
 };
 
+class Usb
+{
+	public:
+	String read();
+	void write(String toWrite);
+	void start(String port, int bit);
+	void stop();
+	private:
+	void waiter();
+};
 
 #endif
