@@ -13,7 +13,7 @@ void setup() {
 }
 
 void loop() {
-  server.clientWait(); //Wait until a client connects
+  server.clientWait(10); //Wait until a client connects, then delay 10 mileseconds
   debug("Got Client");
   debug(server.recv()); //Recieve from server and print to console
   server.send("Got it bud!"); //Send back to Client
