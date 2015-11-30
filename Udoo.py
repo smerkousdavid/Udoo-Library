@@ -50,7 +50,10 @@ UDPip = None
 UDPport = None
 #END
 
-ser = Serial("/dev/ttymxc3", 115200)
+try:
+    ser = Serial("/dev/ttymxc3", 115200) #For udoo dual or quad
+except:
+    ser = Serial("/dev/ttyMCC", 115200) #For udoo neo
 
 def find(full, finds):
     if full.find(finds) != -1:
