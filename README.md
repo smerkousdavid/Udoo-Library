@@ -2,6 +2,11 @@
 
 The ultimate Udoo library that allows you to use the linux side as a library, just like a shield for the Sam3x!
 
+###Note
+For the Udoo neo to work install serial, the dual/quad should already have this
+
+       sudo apt-get install python-serial
+
 ###What is it?
 To start off if you were/are like me, I started off thinking the Udoo was this awesome thing that I could easily access the Linux side with a library, yet I got disappointed because I had to handle the Serial comm and It got really annoying, the more I messed around with it the more i felt like the Udoo was 2 micro-controllers/processors drifting apart, So I tried looked online and didn't find anything, for a library that handled the serial line. Then I decided to make one! 
 
