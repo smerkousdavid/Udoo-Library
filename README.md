@@ -16,7 +16,7 @@ I have created a library for the Udoo that allows the Use of the multi threaded 
 ###How to use it?
 Download the zip on the GitHub repo. The Linux folder gets placed on your desktop, and... and.. that's pretty much it, just install pyserial if not already installed on the new OS for Udoo
 
-The Udoo-Lib will go into the arduino libraries folder (I believe /home/ubuntu/Arduino/libraries/)
+The Udoo-Lib will go into the arduino libraries folder (I believe /home/ubuntu/Arduino/libraries/) or (/usr/share/arduino/libraries/)
 
 If you don't know what to do
 
