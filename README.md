@@ -18,6 +18,10 @@ Download the zip on the GitHub repo. The Linux folder gets placed on your deskto
 
 The Udoo-Lib will go into the arduino libraries folder (I believe /home/ubuntu/Arduino/libraries/) or (/usr/share/arduino/libraries/)
 
+Like so:
+
+       sudo cp -r ~/Desktop/Udoo-Library-master/Udoo-Lib /usr/share/arduino/libraries/
+
 If you don't know what to do
 
 Here: 1. Open Arduino 
