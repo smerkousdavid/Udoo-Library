@@ -17,7 +17,7 @@ void setup() {
   /*
     Reading from a file
   */
-  Strign fileText = storage.readFile(file); //This will return everyline in the file even images(as base)
+  String fileText = storage.readFile(file); //This will return everyline in the file even images(as base)
   udoo.debug("In the file: "+fileText);
   String oneLine = storage.readLine(file, 0); //Pull first line from file
   String lineTwo = storage.readLine(file, 1); //Pull second line from file
